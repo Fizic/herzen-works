@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>🌅 Upload and display image in Flask</title>
+</head>
+
+<body>
+    <h1>Upload and display image in Flask</h1>
+    <p>Show image in html using FLASK</p>
+
+    <form method="POST" enctype="multipart/form-data" action="/image-convert">
+        <input type="file" id="image_file" name="image_file" accept="image/png"><br>
+
+        <input type="checkbox" id="invert_image" name="invert_image" value="checked">
+        <label for="checkbox">Invert Image!</label><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    <hr>
+    <hr>
+    {% if (uploaded_image_data is defined) and (uploaded_image_data is not none) %}
+    Original image:<br>
+    <img src="data:image/png;base64,{{ uploaded_image_data }}">
+
+        {% if (image_changed_data is defined) and (image_changed_data is not none) %}
+            <hr>
+            Changed image:<br>
+            <img src="data:image/png;base64,{{ image_changed_data }}">
+        {% endif %}
+
+        {% if (uploaded_image_exif_data is defined) and (uploaded_image_exif_data is not none) %}
+            <hr>
+            EXIF data:<br>
+            {{ pformat(uploaded_image_exif_data.get_all(), indent=8) }}
+        {% endif %}
+
+    {% else %}
+    Upload a PNG image to display.
+    {% endif %}
+</body>
+
+</html>

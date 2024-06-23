@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  version: 1.0.0
+servers:
+- url: https://d5df0f1lrv6ej7drbocb.apigw.yandexcloud.net
+paths:
+  /{proxy+}:
+    x-yc-apigateway-any-method:
+      security:
+        - httpBasicAuth: [ ]
+      x-yc-apigateway-integration:
+        type: serverless_containers
+        container_id: bbab7a5in91e8fo6pnmu
+        service_account_id: ajeqljs3sbejnhqtpsf8
+      parameters:
+      - explode: false
+        in: path
+        name: proxy
+        required: false
+        schema:
+          default: '-'
+          type: string
+        style: simple
+components:
+  securitySchemes:
+    httpBasicAuth:
+      type: http
+      scheme: basic
+      x-yc-apigateway-authorizer:
+        type: function
+        function_id: d4e1td1m6brtgkrl1kvk
+        tag: "$latest"
+        service_account_id: ajeqljs3sbejnhqtpsf8
+        authorizer_result_ttl_in_seconds: 300
