@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package otp;
+
+option go_package = "github.com/otp";
+
+service OtpService {
+  rpc SendOtp(SendOtpRequest) returns (SendOtpResponse);
+}
+
+message SendOtpRequest {
+  string phone = 1;
+}
+
+message Code {
+  string code = 1;
+  string country = 2;
+}
+
+message SendOtpResponse {
+  Code code = 1;
+}
+
+enum Type {
+  TYPE_1 = 1;
+
+}
