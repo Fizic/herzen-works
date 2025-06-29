@@ -1,0 +1,40 @@
+> # ---------------------------------------------------
+> #        Автор: Фирсов Кирилл Александрович
+> #                     Курс: 3
+> #                 Группа: ИВТ 1.1
+> #
+> #          Тема: Атака на передачу связанных
+> #          сообщений с малым открытым ключом
+> #
+> #
+> #              Дата сдачи: 25.04.2025
+> # ---------------------------------------------------
+> 
+> with(numtheory):
+> with(RandomTools):
+> 
+> e:= 3;
+> 
+> p:= nextprime(Generate(integer(range=3..10^5))):
+> while (igcd(e, (p-1))<>1) do
+> p:= nextprime(Generate(integer(range=3..10^5))) end do:
+> p;
+> q:= nextprime(Generate(integer(range=3..10^5))):
+> while (igcd(e, (q-1))<>1) do
+> q:= nextprime(Generate(integer(range=3..10^5))) end do:
+> q;
+> n:= p*q;
+> phn:=(p-1)*(q-1);
+> 
+> m1:= Generate(integer(range=3..10^5)) mod n;
+> 
+> a:= Generate(integer(range=3..10^5)) mod n;
+> b:= Generate(integer(range=3..10^5)) mod n;
+> m2:= (a*m1 + b) mod n;
+> 
+> c1:= m1&^e mod n;
+> c2:= m2&^e mod n;
+> 
+> m1d:= (((b*(c2+2*(a^3)*c1-(b^3))) mod n)/
+> ((a*(c2-(a^3)*c1+2*(b^3))) mod n)) mod n;
+> #

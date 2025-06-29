@@ -1,0 +1,39 @@
+> # ---------------------------------------------------
+> #        Автор: Фирсов Кирилл Александрович
+> #                     Курс: 3
+> #                 Группа: ИВТ 1.1
+> #
+> #       Тема: Атака методом неподвижной точки
+> #
+> #
+> #              Дата сдачи: 25.04.2025
+> # ---------------------------------------------------
+> 
+> with(numtheory):
+> with(RandomTools):
+> 
+> p := nextprime(Generate(integer(range=3..10^3)));
+> q := nextprime(Generate(integer(range=3..10^3)));
+> n := p*q;
+> phN := (p-1)*(q-1);
+> e := nextprime(Generate(integer(range=3..10^2))):
+> while (igcd(e, phN)<>1) do
+> e := nextprime(Generate(integer(range=3..10^2))) end do:
+> e;
+> 
+> m := Generate(integer(range=3..10^10)) mod n;
+> 
+> c := m&^e mod n;
+> 
+> a := -1;
+> k := 1;
+> ek := e;
+> while (a<>c) do
+> ek := ek*e;
+> a := c&^ek mod n:
+> k := k+1:
+> end do:
+> 
+> ek:=ek/e;
+> m1:=c&^ek mod n;
+> #

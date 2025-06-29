@@ -1,0 +1,38 @@
+> # ---------------------------------------------------
+> #        Автор: Фирсов Кирилл Александрович
+> #                     Курс: 3
+> #                 Группа: ИВТ 1.1
+> #
+> #         Тема: Атака с использованием слепой подписи
+> #
+> #              Дата сдачи: 25.04.2025
+> # ---------------------------------------------------
+> 
+> with(numtheory):
+> with(RandomTools):
+> 
+> p1:= nextprime(Generate(integer(range=3..10^5)));
+> q1:= nextprime(Generate(integer(range=3..10^5)));
+> n1:=p1*q1;
+> phn1:=(p1-1)*(q1-1);
+> 
+> e1:= nextprime(Generate(integer(range=3..10^5))):
+> while (igcd(e1, phn1)<>1) do
+> e1:= nextprime(Generate(integer(range=3..10^5))) end do:
+> e1;
+>
+> d1 := eval(d1, msolve(d1*e1=1, phn1));
+> 
+> m:= Generate(integer(range=3..10^10));
+> s:= m&^d1 mod n1;
+> 
+> r:= nextprime(Generate(integer(range=3..10^5))):
+> while (igcd(r, n1)<>1) do
+> r:= nextprime(Generate(integer(range=3..10^5))) end do:
+> r;
+>
+> m1:= ((r&^e1 mod n1)*(m mod n1)) mod n1;
+>
+> s1:= m1&^d1 mod n1;
+> s2:= ((r^(-1) mod n1)*(s1 mod n1)) mod n1;
+> #

@@ -1,0 +1,24 @@
+> # ---------------------------------------------------
+> #        Автор: Фирсов Кирилл Александрович
+> #                     Курс: 3
+> #                 Группа: ИВТ 1.1
+> #
+> #            Атака вычислением закрытого
+> #              ключа по открытому ключу
+> #
+> #
+> #              Дата сдачи: 25.04.2025
+> # ---------------------------------------------------
+> p1 := nextprime(RandomTools[Generate](integer(range = 3 .. 10^5)));
+> p2 := nextprime(RandomTools[Generate](integer(range = 3 .. 10^3)));
+> rB := p1*p2;
+> phiB := (p1-1)*(p2-1);
+> b := nextprime(RandomTools[Generate](integer(range = 3 .. 10^3)));
+> gcd(e, phiB);
+> B := `mod`(1/b, phiB);
+> m := 12345;
+> m1 := `mod`(`&^`(m, b), rB);
+> m2 := `mod`(`&^`(m1, B), rB);
+> phiB_hacked := (p1-1)*(p2-1);
+> B_hacked := `mod`(1/b, phiB_hacked);
+> #

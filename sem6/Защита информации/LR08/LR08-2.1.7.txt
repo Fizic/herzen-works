@@ -1,0 +1,36 @@
+> # ---------------------------------------------------
+> #        Автор: Фирсов Кирилл Александрович
+> #                     Курс: 3
+> #                 Группа: ИВТ 1.1
+> #
+> #       Тема: Атака на короткий открытый текст
+> #
+> #
+> #              Дата сдачи: 25.04.2025
+> # ---------------------------------------------------
+>
+> with(numtheory):
+> with(RandomTools):
+> 
+> p:= nextprime(Generate(integer(range=3..10^5)));
+> q:= nextprime(Generate(integer(range=3..10^5)));
+> n:=p*q;
+> phN:=(p-1)*(q-1);
+> e:= nextprime(Generate(integer(range=3..10^5))):
+> while (igcd(e,phN)<>1) do
+> e:= nextprime(Generate(integer(range=3..10^5))) end do:
+> e;
+> 
+> m:= Generate(integer(range=3..10^5)) mod n;
+> 
+> c:= m&^e mod n;
+> 
+> for x from 1 to 10^9 do
+> for y from 1 to 10^9 do
+> if ((c*x&^(-e) mod n)=(y&^e mod n)) then
+> m1:=x*y;
+> break x;
+> end if:
+> end do:
+> end do:
+> #

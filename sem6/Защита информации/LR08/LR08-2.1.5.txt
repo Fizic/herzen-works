@@ -1,0 +1,58 @@
+> # ---------------------------------------------------
+> #        Автор: Фирсов Кирилл Александрович
+> #                     Курс: 3
+> #                 Группа: ИВТ 1.1
+> #
+> #       Тема: Атака с малой экспонентой
+> #
+> #
+> #              Дата сдачи: 25.04.2025
+> # ---------------------------------------------------
+> 
+> with(numtheory):
+> with(RandomTools):
+> 
+> e:= 3;
+> 
+> p1:= nextprime(Generate(integer(range=4..10^5)));
+> q1:= nextprime(Generate(integer(range=4..10^5)));
+> n1:= p1*q1;
+> 
+> p2:= nextprime(Generate(integer(range=4..10^5))):
+> while ((p2=p1) or (p2=q1)) do
+> p2:= nextprime(Generate(integer(range=4..10^5))) end do:
+> p2;
+> q2:= nextprime(Generate(integer(range=4..10^5))):
+> while ((q2=p1) or (q2=q1)) do
+> q2:= nextprime(Generate(integer(range=4..10^5))) end do:
+> q2;
+> n2:= p2*q2;
+> 
+> p3:= nextprime(Generate(integer(range=4..10^5))):
+> while ((p3=p1) or (p3=q1) or (p3=p2) or (p3=q2)) do
+> p3:= nextprime(Generate(integer(range=4..10^10))) end do:
+> p3;
+> q3:= nextprime(Generate(integer(range=4..10^5))):
+> while ((q3=p1) or (q3=q1) or (q3=p2) or (q3=q2)) do
+> q3:= nextprime(Generate(integer(range=4..10^5))) end do:
+> q3;
+> n3:= p3*q3;
+> 
+> igcd(n1, n2);
+> igcd(n1, n3);
+> igcd(n2, n3);
+> 
+> igcd(n1, e);
+> igcd(n2, e);
+> igcd(n3, e);
+> 
+> m:= ((Generate(integer(range=3..10^10)) mod n1) mod n2) mod n3;
+> 
+> y1:= m&^e mod n1;
+> y2:= m&^e mod n2;
+> y3:= m&^e mod n3;
+> 
+> prom:= chrem([y1, y2, y3], [n1, n2, n3]);
+> 
+> m1:= root(prom, 3);
+> #

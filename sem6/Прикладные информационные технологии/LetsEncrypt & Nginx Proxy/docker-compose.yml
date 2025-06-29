@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  nginx-proxy:
+    container_name: nginx-proxy
+    image: jwilder/nginx-proxy
+    build: nginx
+    restart: always
+    ports:
+      - 443:443
+      - 80:80
+    volumes:
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    depends_on:
+      - python1
+      - python2
+
+  nginx-proxy-letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    environment:
+      - DEFAULT_EMAIL=kirya.firsov.04@gmail.com
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+      - ACME_CA_URI=https://acme-staging.api.letsencrypt.org/directory
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+      - acme:/etc/acme.sh
+    depends_on:
+      - nginx-proxy
+  python1:
+    image: fizic/herzen-labs
+    expose:
+      - "8111"
+    environment:
+      - RESPONSE=response_1_kirill_firsov
+      - VIRTUAL_HOST=python1.zoncord.com
+      - VIRTUAL_PORT=8111
+      - LETSENCRYPT_HOST=python1.zoncord.com
+    restart: unless-stopped
+  python2:
+    image: fizic/herzen-labs
+    expose:
+      - "8112"
+    environment:
+      - RESPONSE=response_2_kirill_firsov
+      - VIRTUAL_HOST=python2.zoncord.com
+      - VIRTUAL_PORT=8112
+      - LETSENCRYPT_HOST=python2.zoncord.com
+    restart: unless-stopped
+
+volumes:
+  certs:
+  html:
+  vhost:
+  acme:

@@ -1,0 +1,39 @@
+> # ---------------------------------------------------
+> #        Автор: Фирсов Кирилл Александрович
+> #                     Курс: 3
+> #                 Группа: ИВТ 1.1
+> #
+> #     Тема: Атака с помощью выбранного шифротекста-4
+> #
+> #
+> #              Дата сдачи: 25.04.2025
+> # ---------------------------------------------------
+>
+> with(numtheory):
+> with(RandomTools):
+> 
+> p:= nextprime(Generate(integer(range=3..10^5)));
+> q:= nextprime(Generate(integer(range=3..10^5)));
+> n:=p*q;
+> phn:=(p-1)*(q-1);
+> 
+> e:= nextprime(Generate(integer(range=3..10^5))):
+> while (igcd(e, phn)<>1) do
+> e:= nextprime(Generate(integer(range=3..10^5))) end do:
+> e;
+>
+> d := eval(d, msolve(d*e = 1, phn));
+> 
+> m:= Generate(integer(range=3..10^10)) mod n;
+> 
+> c:= m&^e mod n;
+> 
+> r:= Generate(integer(range=3..100)) mod n;
+> 
+> m1:= ((c mod n)*(r&^e mod n)) mod n;
+> 
+> c1:= m1&^d mod n;
+>
+> rn := eval(rn, msolve(rn*r=1, n));
+> m2:= (rn*c1) mod n;
+> #

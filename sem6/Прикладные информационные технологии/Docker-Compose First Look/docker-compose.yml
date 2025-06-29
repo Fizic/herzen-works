@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  python1:
+    image: fizic/herzen-labs
+    ports:
+      - "8111:8111"
+    environment:
+      - RESPONSE=response_1_kirill_firsov
+      - VIRTUAL_HOST=python1.zoncord.com
+      - VIRTUAL_PORT=8111
+      - LETSENCRYPT_HOST=python1.zoncord.com
+    restart: unless-stopped
+  python2:
+    image: fizic/herzen-labs
+    ports:
+      - "8112:8112"
+    environment:
+      - RESPONSE=response_2_kirill_firsov
+      - VIRTUAL_HOST=python2.zoncord.com
+      - VIRTUAL_PORT=8112
+      - LETSENCRYPT_HOST=python2.zoncord.com
+    restart: unless-stopped

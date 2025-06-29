@@ -1,0 +1,58 @@
+> # ---------------------------------------------------
+> #        Автор: Фирсов Кирилл Александрович
+> #                     Курс: 3
+> #                 Группа: ИВТ 1.1
+> #
+> #       Тема: Атака с использованием общего модуля
+> #
+> #
+> #              Дата сдачи: 25.04.2025
+> # ---------------------------------------------------
+> 
+> with(numtheory):
+> with(RandomTools):
+> 
+> p:= nextprime(Generate(integer(range=3..10^5)));
+> q:= nextprime(Generate(integer(range=3..10^5)));
+> 
+> n:= p*q;
+> phN:= (p-1)*(q-1);
+> 
+> eA:= nextprime(Generate(integer(range=3..10^5))):
+> while igcd(eA, phN)<>1 do
+> eA:= nextprime(Generate(integer(range=3..10^5))) end do:
+> eA;
+> 
+> eB:= nextprime(Generate(integer(range=3..10^5))):
+> while igcd(eB, phN)<>1 do
+> eB:= nextprime(Generate(integer(range=3..10^5))) end do:
+> eB;
+> 
+> m:= Generate(integer(range=3..10^5)) mod n;
+>
+> c1:= m&^eB mod n;
+> c2:= m&^eA mod n;
+> 
+> x:='x':
+> y:='y':
+> _Z1:=1: s:=isolve(eB*x+eA*y=1): assign(s): x:=x; y:=y;
+>
+> eB*x+eA*y=1;
+
+> if y<0 then
+> p:= x:
+> x:=y;
+> y:=p;
+> p:= c1:
+> c1:=c2:
+> c2:=p:
+> end if;
+> 
+> d1:= c1&^(abs(x)) mod n;
+> dn1 := eval(dn1, msolve(d1*dn1 = 1, n));
+>
+> d1*dn1 mod n;
+> d2:= c2&^y mod n;
+> 
+> m1:=dn1*d2 mod n;
+> #

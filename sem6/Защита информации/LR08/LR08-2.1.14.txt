@@ -1,0 +1,43 @@
+> # ---------------------------------------------------
+> #        Автор: Фирсов Кирилл Александрович
+> #                     Курс: 3
+> #                 Группа: ИВТ 1.1
+> #
+> #          Тема: Атака для подобных сообщений
+> #        при маленьких значениях открытого ключа
+> #
+> #
+> #              Дата сдачи: 25.04.2025
+> # ---------------------------------------------------
+> 
+> with(numtheory):
+> with(RandomTools):
+> 
+> e:= 5;
+> 
+> p:= nextprime(Generate(integer(range=3..10^5))):
+> while (igcd(e, (p-1))<>1) do
+> p:= nextprime(Generate(integer(range=3..10^5))) end do:
+> p;
+> q:= nextprime(Generate(integer(range=3..10^5))):
+> while (igcd(e, (q-1))<>1) do
+> q:= nextprime(Generate(integer(range=3..10^5))) end do:
+> q;
+> n:= p*q;
+> phn:=(p-1)*(q-1);
+> 
+> m:= Generate(integer(range=3..10^10)) mod n;
+> 
+> c1:= m&^e mod n;
+> 
+> c2:=(m+1)&^e mod n;
+> 
+> G1:= ((c2^3)-3*c1*(c2^2)+3*(c1^2)*c2-(c1^3)+37*(c2^2)) mod n;
+> G2:= (176*c1*c2+37*(c1^2)+73*c2-73*c1+14) mod n;
+> G:=(G1+G2) mod n;
+> F1:= (2*(c2^3)-c1*(c2^2)-4*(c1^2)*c2+3*(c1^3)) mod n;
+> F2:= (14*(c2^2)-88*c1*c2-51*(c1^2)-9*c2+64*c1-7) mod n;
+> F:=(F1+F2) mod n;
+> 
+> m1:= ((F mod n)/(G mod n)) mod n;
+> #
