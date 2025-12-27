@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>OAuth Demo</title>
+  </head>
+  <body>
+    <h1>OAuth Demo (Google)</h1>
+    {% if user.is_authenticated %}
+      <p>Привет, {{ user.username }}!</p>
+      <p><a href="/accounts/logout/">Выйти</a></p>
+    {% else %}
+      <p><a href="/accounts/login/">Войти</a></p>
+      <p><a href="/accounts/google/login/">Войти через Google</a></p>
+    {% endif %}
+  </body>
+  </html>
